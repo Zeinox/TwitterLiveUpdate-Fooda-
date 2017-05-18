@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/TwitterLiveUpdate(Fooda).iml" filepath="$PROJECT_DIR$/TwitterLiveUpdate(Fooda).iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TwitterLiveUpdate-Fooda-.iml" filepath="$PROJECT_DIR$/.idea/TwitterLiveUpdate-Fooda-.iml" />
     </modules>
   </component>
 </project>
