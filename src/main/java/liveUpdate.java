@@ -2,8 +2,6 @@
  * Created by Michael Walsh on 5/18/2017.
  */
 
-
-import org.apache.log4j.BasicConfigurator;
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
@@ -22,17 +20,18 @@ public class liveUpdate {
 
     public void declareAndRetrieve(String handle, int numTweets)
     {
+
+
         Properties apiInfo = new Properties();
         InputStream input = null;
 
         try{
+            //obtain authentication info from config.properties
             apiInfo.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
 
 
 
-            // Follow the given handle
-            BasicConfigurator.configure();
-
+            //initialize config
             ConfigurationBuilder cb = new ConfigurationBuilder();
             cb.setDebugEnabled(false)
                     .setOAuthConsumerKey(apiInfo.getProperty("consumerKey"))
@@ -50,13 +49,17 @@ public class liveUpdate {
 
             System.out.println();
             try {
-
+                //load first 200 pages since that is the upper limit twitter allows any one request
                 Paging page = new Paging(1, 200);
+                //add statues to a list
                 statuses.addAll(twitter.getUserTimeline(handle, page));
                 for(int i = 0 ; i < numTweets; ++i)
                 {
+                    //ensures the user does not ask for more than 200 pages can provide
                     if(i>statuses.size()-1)
                         break;
+
+                    //parse the json file for the tweet only, the other garbage is unnecessary, print
                     JSONObject obj = new JSONObject(statuses.get(i));
                     try {
                         System.out.println("Tweet #" + (i+1));
@@ -73,12 +76,6 @@ public class liveUpdate {
             catch(TwitterException e) {
                 e.printStackTrace();
             }
-
-
-
-
-
-
 
         }catch (IOException err)
         {

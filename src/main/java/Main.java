@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) {
         //args will contain the account to display from and the number of tweets
         liveUpdate manager = new liveUpdate();
+        //error check, needs at least 2 arguments
         if(args.length < 2)
         {
             System.out.print("ERROR: Not enough command line arguments found.\n");
